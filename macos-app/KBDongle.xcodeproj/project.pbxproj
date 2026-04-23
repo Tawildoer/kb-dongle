@@ -11,6 +11,7 @@
 		19F3B8F57E9796E7ECD32AE3 /* DongleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA4D4FF192717F94156D5D /* DongleManager.swift */; };
 		4056F365CF88AE5890CBDEAC /* KeyInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3930C6EAA3F05453F6CB2FA1 /* KeyInterceptor.swift */; };
 		59F807F5481DBD65EB140342 /* HIDReportBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF6BC2B814751FDFA9F93C /* HIDReportBuilderTests.swift */; };
+		663865C35375345FCB48FAF8 /* SlotHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF19C65C96A3E80760F61592 /* SlotHUD.swift */; };
 		A9C42B7F08CBEA174C9887F6 /* KBDongleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD61D52E0B62EE3FDB94C7A /* KBDongleApp.swift */; };
 		AF6ABB0DA034A9C994F20354 /* DonglePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033EA554E8CAA8C4CD926204 /* DonglePeripheral.swift */; };
 		DC273F72609FEA7BA09992DF /* SlotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D287EF7CD262FE2C6041C4 /* SlotManager.swift */; };
@@ -39,6 +40,7 @@
 		7DBA4D4FF192717F94156D5D /* DongleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DongleManager.swift; sourceTree = "<group>"; };
 		BE4EAE231C2363E70D7C72DD /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		D1D287EF7CD262FE2C6041C4 /* SlotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotManager.swift; sourceTree = "<group>"; };
+		DF19C65C96A3E80760F61592 /* SlotHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotHUD.swift; sourceTree = "<group>"; };
 		EAD61D52E0B62EE3FDB94C7A /* KBDongleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBDongleApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				BE4EAE231C2363E70D7C72DD /* MenuBarView.swift */,
+				DF19C65C96A3E80760F61592 /* SlotHUD.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				A9C42B7F08CBEA174C9887F6 /* KBDongleApp.swift in Sources */,
 				4056F365CF88AE5890CBDEAC /* KeyInterceptor.swift in Sources */,
 				EE650207D653B3FA0661178F /* MenuBarView.swift in Sources */,
+				663865C35375345FCB48FAF8 /* SlotHUD.swift in Sources */,
 				DC273F72609FEA7BA09992DF /* SlotManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

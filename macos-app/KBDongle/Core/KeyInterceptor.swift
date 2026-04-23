@@ -12,13 +12,56 @@ final class KeyInterceptor {
     var onSlotSwitch: ((Int) -> Void)?
     var isRemoteActive = false
 
+    private var hotKeyRefs: [EventHotKeyRef] = []
+    private var hotKeyHandler: EventHandlerRef?
+
     func start() {
-        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary
-        guard AXIsProcessTrustedWithOptions(options) else { return }
-        installTap()
+        registerHotKeys()
+        if AXIsProcessTrusted() {
+            installTap()
+        } else {
+            let opts = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary
+            AXIsProcessTrustedWithOptions(opts)
+            pollForAccessibility()
+        }
+    }
+
+    private func registerHotKeys() {
+        // Carbon hotkeys work without Accessibility permission
+        let keyCodes: [UInt32] = [18, 19, 20, 21, 23, 22, 26, 28, 25] // 1–9
+        var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard),
+                                      eventKind: UInt32(kEventHotKeyPressed))
+        let selfPtr = Unmanaged.passUnretained(self).toOpaque()
+        InstallEventHandler(GetApplicationEventTarget(), { _, event, refcon -> OSStatus in
+            var hkID = EventHotKeyID()
+            GetEventParameter(event, UInt32(kEventParamDirectObject),
+                              UInt32(typeEventHotKeyID), nil,
+                              MemoryLayout<EventHotKeyID>.size, nil, &hkID)
+            let interceptor = Unmanaged<KeyInterceptor>.fromOpaque(refcon!).takeUnretainedValue()
+            interceptor.onSlotSwitch?(Int(hkID.id))
+            return noErr
+        }, 1, &eventType, selfPtr, &hotKeyHandler)
+
+        for (i, keyCode) in keyCodes.enumerated() {
+            var ref: EventHotKeyRef?
+            let id = EventHotKeyID(signature: OSType(0x4B424B59), id: UInt32(i + 1))
+            RegisterEventHotKey(keyCode,
+                                UInt32(cmdKey | shiftKey),
+                                id, GetApplicationEventTarget(), 0, &ref)
+            if let ref { hotKeyRefs.append(ref) }
+        }
+    }
+
+    private func pollForAccessibility() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self else { return }
+            if AXIsProcessTrusted() { self.installTap() }
+            else { self.pollForAccessibility() }
+        }
     }
 
     private func installTap() {
+        try? "tap installing\n".write(toFile: "/tmp/kbdongle-ax.log", atomically: true, encoding: .utf8)
         let mask: CGEventMask = [
             CGEventType.keyDown, .keyUp,
             .mouseMoved, .leftMouseDown, .leftMouseUp,
@@ -38,7 +81,11 @@ final class KeyInterceptor {
             },
             userInfo: selfPtr
         )
-        guard let tap = eventTap else { return }
+        guard let tap = eventTap else {
+            try? "tap creation FAILED\n".write(toFile: "/tmp/kbdongle-ax.log", atomically: true, encoding: .utf8)
+            return
+        }
+        try? "tap created OK\n".write(toFile: "/tmp/kbdongle-ax.log", atomically: true, encoding: .utf8)
         runLoopSource = CFMachPortCreateRunLoopSource(nil, tap, 0)
         CFRunLoopAddSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
         CGEvent.tapEnable(tap: tap, enable: true)
@@ -62,15 +109,10 @@ final class KeyInterceptor {
     private func handleKey(event: CGEvent, isDown: Bool) -> Unmanaged<CGEvent>? {
         let keyCode = CGKeyCode(event.getIntegerValueField(.keyboardEventKeycode))
         let flags = event.flags
+        // Slot switching is handled by Carbon hotkeys — suppress CMD+Shift+1-9 from forwarding
         if isDown && flags.contains(.maskCommand) && flags.contains(.maskShift) {
-            let slotKeys: [CGKeyCode: Int] = [
-                0x12: 1, 0x13: 2, 0x14: 3, 0x15: 4,
-                0x17: 5, 0x16: 6, 0x1A: 7, 0x1C: 8, 0x19: 9,
-            ]
-            if let slot = slotKeys[keyCode] {
-                onSlotSwitch?(slot)
-                return nil
-            }
+            let slotKeyCodes: Set<CGKeyCode> = [0x12, 0x13, 0x14, 0x15, 0x17, 0x16, 0x1A, 0x1C, 0x19]
+            if slotKeyCodes.contains(keyCode) { return Unmanaged.passUnretained(event) }
         }
         guard isRemoteActive else { return Unmanaged.passUnretained(event) }
         let report = isDown

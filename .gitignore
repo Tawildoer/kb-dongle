@@ -1,2 +1,15 @@
 .worktrees/
 .superpowers/
+.DS_Store
+docs/.DS_Store
+
+# ESP-IDF build output
+firmware/build/
+
+# Xcode derived data
+macos-app/DerivedData/
+macos-app/*.xcodeproj/xcuserdata/
+macos-app/*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# macOS
+**/.DS_Store

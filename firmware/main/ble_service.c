@@ -26,6 +26,7 @@ static const ble_uuid128_t mouse_uuid = BLE_UUID128_INIT(
 
 static key_report_cb_t s_key_cb;
 static mouse_report_cb_t s_mouse_cb;
+static void ble_app_advertise(void);
 
 static int key_report_write_cb(uint16_t conn_handle, uint16_t attr_handle,
                                 struct ble_gatt_access_ctxt *ctxt, void *arg) {
@@ -60,6 +61,30 @@ static const struct ble_gatt_svc_def s_services[] = {
     { 0 },
 };
 
+static int ble_gap_event_cb(struct ble_gap_event *event, void *arg) {
+    switch (event->type) {
+    case BLE_GAP_EVENT_CONNECT:
+        if (event->connect.status == 0) {
+            ESP_LOGI(TAG, "Connected, handle=%d", event->connect.conn_handle);
+        } else {
+            ESP_LOGI(TAG, "Connection failed, status=%d — restarting adv", event->connect.status);
+            ble_app_advertise();
+        }
+        break;
+    case BLE_GAP_EVENT_DISCONNECT:
+        ESP_LOGI(TAG, "Disconnected, reason=%d — restarting adv", event->disconnect.reason);
+        ble_app_advertise();
+        break;
+    case BLE_GAP_EVENT_ADV_COMPLETE:
+        ESP_LOGI(TAG, "Adv complete — restarting");
+        ble_app_advertise();
+        break;
+    default:
+        break;
+    }
+    return 0;
+}
+
 static void ble_app_advertise(void) {
     struct ble_gap_adv_params adv_params = {0};
     adv_params.conn_mode = BLE_GAP_CONN_MODE_UND;
@@ -75,7 +100,7 @@ static void ble_app_advertise(void) {
     fields.name_len = strlen(name);
     fields.name_is_complete = 1;
     ble_gap_adv_set_fields(&fields);
-    ble_gap_adv_start(BLE_OWN_ADDR_PUBLIC, NULL, BLE_HS_FOREVER, &adv_params, NULL, NULL);
+    ble_gap_adv_start(BLE_OWN_ADDR_PUBLIC, NULL, BLE_HS_FOREVER, &adv_params, ble_gap_event_cb, NULL);
     ESP_LOGI(TAG, "Advertising as: %s", name);
 }
 

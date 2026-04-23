@@ -19,6 +19,8 @@ final class SlotManager: ObservableObject {
     func switchTo(slot: Int) {
         activeSlot = slot
         interceptor.isRemoteActive = slot > 1
+        let name = dongleManager?.dongle(atSlot: slot)?.displayName ?? "Dongle \(slot)"
+        SlotHUD.shared.show(slot: slot, name: name)
     }
 
     private func forwardKey(_ report: [UInt8]) {
