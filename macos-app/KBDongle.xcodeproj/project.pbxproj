@@ -283,13 +283,14 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.specter.KBDongleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.specter.kbdongle.tests;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.9;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KBDongle.app/Contents/MacOS/KBDongle";
@@ -301,13 +302,14 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.specter.KBDongleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.specter.kbdongle.tests;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.9;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KBDongle.app/Contents/MacOS/KBDongle";
