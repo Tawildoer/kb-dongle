@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

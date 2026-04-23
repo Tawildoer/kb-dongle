@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/CMakeFiles/bootloader
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/CMakeFiles/bootloader.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/CMakeFiles/bootloader-complete.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/Users/mattwildoer/Desktop/kb-dongle/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

@@ -1,0 +1,2 @@
+/Users/mattwildoer/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-ar qc libmain.a CMakeFiles/__idf_main.dir/main.c.obj CMakeFiles/__idf_main.dir/usb_hid.c.obj CMakeFiles/__idf_main.dir/ble_service.c.obj
+/Users/mattwildoer/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-ranlib libmain.a
