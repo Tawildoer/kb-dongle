@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		175EFB3A03FAE9A9D181D915 /* HIDReportBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B3054CDBC428E79443A11 /* HIDReportBuilder.swift */; };
+		19F3B8F57E9796E7ECD32AE3 /* DongleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA4D4FF192717F94156D5D /* DongleManager.swift */; };
+		4056F365CF88AE5890CBDEAC /* KeyInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3930C6EAA3F05453F6CB2FA1 /* KeyInterceptor.swift */; };
+		59F807F5481DBD65EB140342 /* HIDReportBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF6BC2B814751FDFA9F93C /* HIDReportBuilderTests.swift */; };
 		A9C42B7F08CBEA174C9887F6 /* KBDongleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD61D52E0B62EE3FDB94C7A /* KBDongleApp.swift */; };
+		AF6ABB0DA034A9C994F20354 /* DonglePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033EA554E8CAA8C4CD926204 /* DonglePeripheral.swift */; };
+		DC273F72609FEA7BA09992DF /* SlotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D287EF7CD262FE2C6041C4 /* SlotManager.swift */; };
+		EE650207D653B3FA0661178F /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4EAE231C2363E70D7C72DD /* MenuBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,14 +28,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		033EA554E8CAA8C4CD926204 /* DonglePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonglePeripheral.swift; sourceTree = "<group>"; };
+		0DFF6BC2B814751FDFA9F93C /* HIDReportBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDReportBuilderTests.swift; sourceTree = "<group>"; };
 		1AC9D3719736A6BCEFB41845 /* KBDongleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KBDongleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		223B3054CDBC428E79443A11 /* HIDReportBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDReportBuilder.swift; sourceTree = "<group>"; };
+		3930C6EAA3F05453F6CB2FA1 /* KeyInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInterceptor.swift; sourceTree = "<group>"; };
 		43F2227A8EC2689872257BA5 /* KBDongle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KBDongle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA6F01583779024C821F912 /* KBDongle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KBDongle.entitlements; sourceTree = "<group>"; };
 		6BD92BE19D80BE2002147590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7DBA4D4FF192717F94156D5D /* DongleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DongleManager.swift; sourceTree = "<group>"; };
+		BE4EAE231C2363E70D7C72DD /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		D1D287EF7CD262FE2C6041C4 /* SlotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotManager.swift; sourceTree = "<group>"; };
 		EAD61D52E0B62EE3FDB94C7A /* KBDongleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBDongleApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		2F1813A75BE9FA3ABB247F3C /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				7DBA4D4FF192717F94156D5D /* DongleManager.swift */,
+				033EA554E8CAA8C4CD926204 /* DonglePeripheral.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
 		4DC849A1E77AEB0EE9EADCC4 = {
 			isa = PBXGroup;
 			children = (
@@ -38,12 +61,23 @@
 			);
 			sourceTree = "<group>";
 		};
+		6FD5416B4045263F74E3C784 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BE4EAE231C2363E70D7C72DD /* MenuBarView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		B8F472AE2A97BBC390F89909 /* KBDongle */ = {
 			isa = PBXGroup;
 			children = (
 				6BD92BE19D80BE2002147590 /* Info.plist */,
 				5CA6F01583779024C821F912 /* KBDongle.entitlements */,
 				EAD61D52E0B62EE3FDB94C7A /* KBDongleApp.swift */,
+				2F1813A75BE9FA3ABB247F3C /* BLE */,
+				E11D24B7C4E5637F69DAC2D9 /* Core */,
+				6FD5416B4045263F74E3C784 /* UI */,
 			);
 			path = KBDongle;
 			sourceTree = "<group>";
@@ -51,6 +85,7 @@
 		CB48B5C2DE6BAAAF85D0CBD1 /* KBDongleTests */ = {
 			isa = PBXGroup;
 			children = (
+				0DFF6BC2B814751FDFA9F93C /* HIDReportBuilderTests.swift */,
 			);
 			path = KBDongleTests;
 			sourceTree = "<group>";
@@ -62,6 +97,16 @@
 				1AC9D3719736A6BCEFB41845 /* KBDongleTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E11D24B7C4E5637F69DAC2D9 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				223B3054CDBC428E79443A11 /* HIDReportBuilder.swift */,
+				3930C6EAA3F05453F6CB2FA1 /* KeyInterceptor.swift */,
+				D1D287EF7CD262FE2C6041C4 /* SlotManager.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59F807F5481DBD65EB140342 /* HIDReportBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F3B8F57E9796E7ECD32AE3 /* DongleManager.swift in Sources */,
+				AF6ABB0DA034A9C994F20354 /* DonglePeripheral.swift in Sources */,
+				175EFB3A03FAE9A9D181D915 /* HIDReportBuilder.swift in Sources */,
 				A9C42B7F08CBEA174C9887F6 /* KBDongleApp.swift in Sources */,
+				4056F365CF88AE5890CBDEAC /* KeyInterceptor.swift in Sources */,
+				EE650207D653B3FA0661178F /* MenuBarView.swift in Sources */,
+				DC273F72609FEA7BA09992DF /* SlotManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
