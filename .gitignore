@@ -5,6 +5,8 @@ docs/.DS_Store
 
 # ESP-IDF build output
 firmware/build/
+firmware/managed_components/
+firmware/sdkconfig
 
 # Xcode derived data
 macos-app/DerivedData/

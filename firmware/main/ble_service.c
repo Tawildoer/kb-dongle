@@ -1,5 +1,6 @@
 #include "ble_service.h"
 #include "esp_log.h"
+#include "esp_bt.h"
 #include "nvs_flash.h"
 #include "nimble/nimble_port.h"
 #include "nimble/nimble_port_freertos.h"
@@ -66,6 +67,14 @@ static int ble_gap_event_cb(struct ble_gap_event *event, void *arg) {
     case BLE_GAP_EVENT_CONNECT:
         if (event->connect.status == 0) {
             ESP_LOGI(TAG, "Connected, handle=%d", event->connect.conn_handle);
+            esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_CONN_HDL0, ESP_PWR_LVL_P21);
+            struct ble_gap_upd_params params = {
+                .itvl_min = 6,
+                .itvl_max = 24,
+                .latency = 0,
+                .supervision_timeout = 600,
+            };
+            ble_gap_update_params(event->connect.conn_handle, &params);
         } else {
             ESP_LOGI(TAG, "Connection failed, status=%d — restarting adv", event->connect.status);
             ble_app_advertise();
@@ -104,7 +113,12 @@ static void ble_app_advertise(void) {
     ESP_LOGI(TAG, "Advertising as: %s", name);
 }
 
-static void ble_on_sync(void) { ble_hs_util_ensure_addr(0); ble_app_advertise(); }
+static void ble_on_sync(void) {
+    ble_hs_util_ensure_addr(0);
+    esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_DEFAULT, ESP_PWR_LVL_P21);
+    esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P21);
+    ble_app_advertise();
+}
 static void ble_on_reset(int reason) { ESP_LOGE(TAG, "BLE reset, reason=%d", reason); }
 
 static void nimble_host_task(void *param) {
